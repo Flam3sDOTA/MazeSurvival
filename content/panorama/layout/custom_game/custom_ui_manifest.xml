@@ -1,0 +1,78 @@
+<root> 
+  <scripts>
+  </scripts>
+  <script>
+    // Uncomment any of the following lines in order to disable that portion of the default UI
+
+    GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false );     		//Heroes and team score at the top of the HUD.
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ACTION_MINIMAP, false );			//Minimap
+    GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false );      //Lefthand flyout scoreboard. 
+    GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_PROTECT, false );      //Glyph.
+    GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_SHOP_SUGGESTEDITEMS, false );    //Suggested items shop panel.
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_COURIER, false );      //Courier controls.
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_PREGAME_STRATEGYUI, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_KILLCAM, false );
+ 
+    // These lines set up the panorama colors used by each team (for game select/setup, etc)
+    GameUI.CustomUIConfig().team_colors = {}
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#3dd296;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_BADGUYS ] = "#F3C909;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_1] = "#c54da8;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_2] = "#FF6C00;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_3] = "#3455FF;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_4] = "#65d413;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_5] = "#815336;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_6] = "#1bc0d8;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_7] = "#c7e40d;";
+    GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_8] = "#8c2af4;";
+
+    var HUD = $.GetContextPanel().GetParent().GetParent();
+    var newUI = HUD.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
+    var NoGlyphAndRadar = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
+	var newUITOP = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("MenuButtons");
+
+    newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";
+    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
+    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});
+	
+	newUITOP.FindChildTraverse("DashboardButton").style.visibility = "collapse";
+    newUITOP.FindChildTraverse("ToggleScoreboardButton").style.visibility = "collapse";
+    newUITOP.FindChildTraverse("SettingsButton").style.visibility = "collapse";
+	
+	NoGlyphAndRadar.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
+	HUD.FindChildTraverse("stackable_side_panels").FindChildTraverse("quickstats").style.visibility = "collapse";
+	newUI.FindChildTraverse("inventory_tpscroll_container").style.visibility = "collapse";
+	newUI.FindChildTraverse("right_flare").style.visibility = "collapse";
+	newUI.FindChildTraverse("left_flare").style.visibility = "collapse";
+	newUI.FindChildTraverse("inventory_neutral_slot_container").style.visibility = "collapse";
+    
+    newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
+    //newUI.FindChildTraverse("inventory").FindChildTraverse("inventory_items").FindChildTraverse("inventory_backpack_list").style.visibility = "collapse";
+    //newUI.FindChildrenWithClassTraverse("TertiaryAbilityContainer")[0].style.visibility = "collapse";
+	
+	// Credits: EarthSalamander #42
+		// Hide vanilla pick screen in loading screen
+		HidePickScreen()
+
+		function HidePickScreen() {
+			if (!Game.GameStateIs(3)) {
+				FindDotaHudElement("PreGame").style.opacity = "0";
+				$.Schedule(1.0, HidePickScreen)
+			}
+			else {
+				FindDotaHudElement("PreGame").style.opacity = "1";
+			}
+		}
+	
+  </script> 
+
+  <Panel>
+    <CustomUIElement type="LoadingScreen" 	layoutfile="file://{resources}/layout/custom_game/custom_loading_screen.xml" />
+    <CustomUIElement type="Hud" 			layoutfile="file://{resources}/layout/custom_game/MainUI.xml" />
+	<CustomUIElement type="Hud" 			layoutfile="file://{resources}/layout/custom_game/PlayersList.xml" />
+    <CustomUIElement type="Hud" 			layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" />
+    <CustomUIElement type="Hud" 			layoutfile="file://{resources}/layout/custom_game/selection.xml" />
+  </Panel>
+</root>

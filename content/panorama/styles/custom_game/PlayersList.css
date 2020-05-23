@@ -1,0 +1,133 @@
+.Root
+{
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+}
+
+.AvatarsPanel
+{
+	flow-children: down;
+	horizontal-align: left;
+	z-index: 3;
+}
+
+
+.PlayerPanel
+{			
+	width: 197px;
+	height: 87px;
+	opacity: 1;
+	background-color: #000a;
+	transition-duration: .05s;
+	transition-property: background-image;
+	transition-timing-function: ease-in-out;
+	margin-bottom: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-right: 1px solid #b0c3d9;
+	border-top: 1px solid #b0c3d9;
+	border-bottom: 1px solid #b0c3d9;
+	border-left: -1px solid #b0c3d9;
+}
+
+.UserAvatar
+{			
+	width: 56px;
+	height: 56px;
+	background-size: 100%;
+	background-image:url('file://{images}/custom_game/user_avatar.png');
+	horizontal-align: left;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+.Username
+{	
+	horizontal-align: center;
+	margin-top: 13px;
+	margin-left: 50px;
+}
+Label {
+	color: white;
+	font-size: 25px;
+	text-shadow: 1px 1px 2px 3.0 #000000;
+	letter-spacing: 1px;
+	color: white;
+}
+
+.HeroName
+{	
+	horizontal-align: center;
+	color: orange;
+	font-size: 24px;
+	text-shadow: 2px 2px 2px black;
+	text-overflow: clip;
+	margin-top: 45px;
+	margin-left: 85px;
+}
+
+.PlayerHealth
+{	
+  width: 210px;
+  height: 25px;  
+  margin-top: 57px;
+  margin-left:0px;
+  background-color: black;
+  border-radius: 0px;
+  border: 3px solid #444;
+}
+
+.PlayerHealth .ProgressBarLeft
+{
+
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #425d25 ), color-stop( 0.2, #5BA539 ), color-stop( .5, #4D9030), to( #425d25) );
+}
+
+.HealthPercentage
+{
+	margin-top: 60px;
+	font-size: 17px;
+	horizontal-align: right;
+	margin-right: 4px;
+	color: white;
+	text-shadow: 1px 1px 2px 3.0 #000000;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: white;
+}
+
+.PlayerMana
+{	
+  width: 210px;
+  height: 25px;  
+  margin-top: 82px;
+  margin-left:0px;
+  border-style: solid;
+  border-width: 0.7px;
+  border-radius: 0px;
+  border-color: #25282acc;
+  border-top: 1px solid #b0c3d9;
+}
+
+.PlayerMana .ProgressBarLeft
+{
+
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d1da6 ), color-stop( 0.2, #2c2cde ), color-stop( .5, #2c2cc9), to( #1e1e9e) );
+}
+
+.ManaPercentage
+{
+	margin-top: 85px;
+	font-size: 19px;
+	font-family: titlefont;
+	horizontal-align: right;
+	margin-right: 14px;
+	color: white;
+}
+
+
+.Invisible
+{
+	opacity: 0;
+}
